@@ -4,6 +4,7 @@
   font-weight: 400;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  background: linear-gradient(270deg, #0f0f0fb7 -20%, #6ca1a100 100%);
 }
 
 body {

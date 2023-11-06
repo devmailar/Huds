@@ -1,17 +1,13 @@
-onNet('Screens/phone', (display) => {
-  const testData = {
-    job: 'officer', // 'officer', 'nurse', ''...
-  };
-
-  console.info('Net event called <Screens/phone>');
+onNet('Huds/phone', (display, data) => {
+  console.info('Net event called <Huds/phone>');
   console.info('Display:', display);
-  console.info('Data:', testData);
+  console.info('Data:', data);
 
   SetNuiFocus(display, display);
   SendNuiMessage(
     JSON.stringify({
       visible: display,
-      data: testData,
+      data: data,
     })
   );
 });

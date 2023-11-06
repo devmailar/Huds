@@ -1,5 +1,5 @@
 RegisterRawNuiCallback('exit', async () => {
-  emit('Screens/phone', false, [
+  emit('Huds/phone', false, [
     {
       job: 'N/A',
     },

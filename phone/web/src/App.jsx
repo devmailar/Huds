@@ -16,15 +16,13 @@ import './App.css';
 
 export default function App({ data }) {
   const [isLocked, setIsLocked] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
 
-  const policeRanks = ['cadet', 'officer', 'sergeant', 'lieutenant', 'captain', 'chief'];
-  const medicRanks = ['ems', 'doctor', 'nurse'];
-
-  const isPolice = policeRanks.some((rank) => {
+  const isPolice = ['cadet', 'officer', 'sergeant', 'lieutenant', 'captain', 'chief'].some((rank) => {
     return data.job.toLowerCase().includes(rank);
   });
 
-  const isMedic = medicRanks.some((rank) => {
+  const isMedic = ['ems', 'doctor', 'nurse'].some((rank) => {
     return data.job.toLowerCase().includes(rank);
   });
 
@@ -111,15 +109,33 @@ export default function App({ data }) {
         });
       }
     };
+
     window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
   }, []);
 
   return (
     <div className="animate__animated animate__rotateInUpLeft flex justify-end items-end h-screen">
-      <div className="flex justify-between bg-[#161823] shadow-[#2c2f4e] shadow-2xl w-[14rem] h-[28rem] mr-40 mb-8 rounded-lg">
+      <div className="flex justify-between bg-[#161823] shadow-[#2c2f4e] shadow-2xl w-[15rem] h-[28rem] mr-40 mb-8 rounded-lg">
         <div className="border-8 border-[#12151e] p-2 w-full rounded-lg">
-          <div className="flex justify-center text-white p-2">
-            <h1 className="font-bold text-xl">Cell Phone</h1>
+          <div className="flex justify-between text-white p-2">
+            <h1 className="font-bold text-xl">Phone</h1>
+            <p className="font-bold text-xl">
+              {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            </p>
           </div>
           <div className="flex justify-center gap-2 p-4 bg-[#09090e] w-full h-auto">
             <div className="flex flex-col justify-start gap-2">
@@ -127,28 +143,19 @@ export default function App({ data }) {
                 className="btn btn-primary bg-red-800 rounded-none p-3"
                 onClick={toggleLock}
               >
-                <GiCarKey
-                  className="text-3xl"
-                  c
-                />
+                <GiCarKey className="text-3xl" />
               </button>
               <button
                 className="btn btn-primary bg-sky-800 rounded-none p-3"
                 onClick={(e) => action('garage')}
               >
-                <GiHomeGarage
-                  className="text-3xl"
-                  c
-                />
+                <GiHomeGarage className="text-3xl" />
               </button>
               <button
                 className="btn btn-primary bg-gray-600 rounded-none p-3"
                 onClick={(e) => action('carMenu')}
               >
-                <GiCityCar
-                  className="text-3xl"
-                  c
-                />
+                <GiCityCar className="text-3xl" />
               </button>
             </div>
             <div className="flex flex-col justify-start gap-2">
@@ -156,28 +163,19 @@ export default function App({ data }) {
                 className="btn btn-primary bg-yellow-800 rounded-none p-3"
                 onClick={(e) => action('jobs')}
               >
-                <GiBriefcase
-                  className="text-3xl"
-                  c
-                />
+                <GiBriefcase className="text-3xl" />
               </button>
               <button
                 className="btn btn-primary rounded-none p-3"
                 onClick={(e) => action('inventory')}
               >
-                <GiLightBackpack
-                  className="text-3xl"
-                  c
-                />
+                <GiLightBackpack className="text-3xl" />
               </button>
               <button
                 className="btn btn-primary bg-green-800 rounded-none p-3"
                 onClick={(e) => action('bank')}
               >
-                <GiPiggyBank
-                  className="text-3xl"
-                  c
-                />
+                <GiPiggyBank className="text-3xl" />
               </button>
             </div>
             <div className="flex flex-col justify-start gap-2">
@@ -185,20 +183,14 @@ export default function App({ data }) {
                 className="btn btn-primary bg-black rounded-none p-3"
                 onClick={(e) => action('help')}
               >
-                <TfiHelpAlt
-                  className="text-3xl"
-                  c
-                />
+                <TfiHelpAlt className="text-3xl" />
               </button>
               {isEmergencyWorker && (
                 <button
                   className="btn btn-primary bg-gray-800 rounded-none p-3"
                   onClick={(e) => action('panic')}
                 >
-                  <GiRingingAlarm
-                    className="text-3xl"
-                    c
-                  />
+                  <GiRingingAlarm className="text-3xl" />
                 </button>
               )}
 
@@ -207,10 +199,7 @@ export default function App({ data }) {
                   className="btn btn-primary bg-blue-800  rounded-none p-3"
                   onClick={(e) => action('policeMenu')}
                 >
-                  <GiPoliceOfficerHead
-                    className="text-3xl"
-                    c
-                  />
+                  <GiPoliceOfficerHead className="text-3xl" />
                 </button>
               )}
               {isMedic && (
@@ -218,10 +207,7 @@ export default function App({ data }) {
                   className="btn btn-primary bg-red-800  rounded-none p-3"
                   onClick={(e) => action('medicMenu')}
                 >
-                  <GiNurseMale
-                    className="text-3xl"
-                    c
-                  />
+                  <GiNurseMale className="text-3xl" />
                 </button>
               )}
 
@@ -231,19 +217,13 @@ export default function App({ data }) {
                     className="btn btn-primary bg-blue-800  rounded-none p-3"
                     onClick={(e) => action('callPolice')}
                   >
-                    <GiVibratingSmartphone
-                      className="text-3xl"
-                      c
-                    />
+                    <GiVibratingSmartphone className="text-3xl" />
                   </button>
                   <button
                     className="btn btn-primary bg-red-800  rounded-none p-3"
                     onClick={(e) => action('callMedic')}
                   >
-                    <GiVibratingSmartphone
-                      className="text-3xl"
-                      c
-                    />
+                    <GiVibratingSmartphone className="text-3xl" />
                   </button>
                 </>
               )}
