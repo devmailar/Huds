@@ -1,10 +1,11 @@
-import { GiUsbKey, GiBank, GiCash } from 'react-icons/gi';
+import { GiBank, GiCash, GiUsbKey } from 'react-icons/gi';
 import './App.css';
 
-export default function ({ full_name, license, cash, bank }) {
+export default function ({ full_name, license, profile_pic, cash, bank }) {
   const formattedLicense = license.replace('license:', '').slice(0, 4) + '...' + license.slice(-4);
 
   /**
+   * This function returns string, ex: if value is 1900 then we return $1,900,00
    * @param {number} value
    * @returns {string}
    */
@@ -21,7 +22,7 @@ export default function ({ full_name, license, cash, bank }) {
         <div className="animate__animated animate__fadeInDown animate__delay-0.6s w-20 h-20 relative">
           <img
             className="rounded-full absolute top-0 left-0 w-full h-full object-cover shadow-md shadow-black"
-            src="https://sumo.app/works/cute-frog-pfp-2jpg/image"
+            src={profile_pic}
             alt="pfp"
           />
         </div>

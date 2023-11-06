@@ -13,6 +13,7 @@ const root = createRoot(document.getElementById('root'));
 //     {
 //       full_name: 'John Doe',
 //       license: 'license:0673c17a25323f11be214fc75bdcae036ab5705f',
+//       profile_pic: 'https://i.seadn.io/gcs/files/3085b3fc65f00b28699b43efb4434eec.png?auto=format&dpr=1&w=1000',
 //       cash: 1900,
 //       bank: 20000,
 //     },
