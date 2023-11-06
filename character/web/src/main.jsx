@@ -1,3 +1,4 @@
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import './index.css';
@@ -27,8 +28,14 @@ window.addEventListener('message', (event) => {
   const { visible, data } = event.data;
 
   if (visible) {
-    root.render(<App {...data[0]} />);
-  } else {
-    root.render();
+    root.render(
+      <StrictMode>
+        <App {...data[0]} />
+      </StrictMode>
+    );
+
+    return;
   }
+
+  root.render();
 });
