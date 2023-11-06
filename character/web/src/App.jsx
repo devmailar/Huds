@@ -1,54 +1,57 @@
-import { GiBriefcase, GiBank, GiCash } from 'react-icons/gi';
+import { GiUsbKey, GiBank, GiCash } from 'react-icons/gi';
 import './App.css';
 
-export default function ({ cash, bank, job }) {
+export default function ({ full_name, license, cash, bank }) {
+  /**
+   *
+   * @param {number} value
+   * @returns {string}
+   */
   const convertCurrency = (value) => {
-    return Intl.NumberFormat('FI', {
+    return Intl.NumberFormat('EN', {
       style: 'currency',
-      currency: 'EUR',
-      maximumFractionDigits: 1,
+      currency: 'USD',
+      maximumFractionDigits: 0,
     }).format(value);
   };
 
   return (
-    <div className="animate__animated animate__backInUp flex justify-end items-center h-screen">
-      <aside className="flex flex-col items-end gap-3 m-4">
-        <article className="bg-[#49be25] rounded-full shadow-xl w-fit">
-          <div className="flex items-center gap-2">
-            <div className="flex p-4 bg-gray-900 rounded-full">
-              <GiCash
-                className="text-3xl"
-                color="#49be25"
-              />
-            </div>
-            <p className="text-2xl text-slate-200 font-black pr-4">{convertCurrency(cash)}</p>
+    <div className="animate__animated animate__fadeInDown flex justify-end items-start w-full m-14">
+      <div className="flex gap-4 items-center w-80 mr-10">
+        <div className="animate__animated animate__fadeInDown animate__delay-0.6s w-20 h-20 relative">
+          <img
+            className="rounded-full absolute top-0 left-0 w-full h-full object-cover shadow-md shadow-black"
+            src="https://sumo.app/works/cute-frog-pfp-2jpg/image"
+            alt="pfp"
+          />
+        </div>
+        <div className="flex flex-col gap-y-1">
+          <div>
+            <h2 className="text-xl text-slate-50 font-bold lowercase">#{full_name}</h2>
           </div>
-        </article>
-
-        <article className="bg-[#51a7cc] rounded-full shadow-xl w-fit">
-          <div className="flex items-center gap-2">
-            <div className="flex p-4 bg-gray-900 rounded-full">
-              <GiBank
-                className="text-3xl"
-                color="#51a7cc"
-              />
-            </div>
-            <p className="text-2xl text-slate-200 font-black pr-4">{convertCurrency(bank)}</p>
+          <div className="animate__animated animate__fadeInDown animate__delay-0.2s flex gap-1 items-center bg-gray-600 opacity-60 px-2 py-0.5 rounded-md">
+            <GiUsbKey
+              className="text-[0.8em]"
+              color="#ffffff"
+            />
+            <code className="text-[0.8em] text-white">{license.replace('license:', '').slice(0, 4) + '...' + license.slice(-4)}</code>
           </div>
-        </article>
-
-        <article className="bg-[#cc7451] rounded-full shadow-xl w-fit">
-          <div className="flex items-center gap-2">
-            <div className="flex p-4 bg-gray-900 rounded-full">
-              <GiBriefcase
-                className="text-3xl"
-                color="#cc7451"
-              />
-            </div>
-            <p className="text-2xl text-slate-200 font-black pr-4 capitalize">{job}</p>
+          <div className="animate__animated animate__fadeInDown animate__delay-0.4s flex gap-1 items-center bg-[#4191b3] border-[#397f9d] opacity-60 px-2 py-0.5 rounded-md ">
+            <GiBank
+              className="text-[0.8em] "
+              color="#ffffff"
+            />
+            <code className="text-[0.8em] text-white">{convertCurrency(bank)}</code>
           </div>
-        </article>
-      </aside>
+          <div className="animate__animated animate__fadeInDown animate__delay-0.3s flex gap-1 items-center bg-[#3fa65b] border-[#358b4c] opacity-60 px-2 py-0.5 rounded-md ">
+            <GiCash
+              className="text-[0.8em]"
+              color="#ffffff"
+            />
+            <code className="text-[0.8em] text-white">{convertCurrency(cash)}</code>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
