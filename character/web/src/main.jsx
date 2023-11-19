@@ -17,6 +17,24 @@ const root = createRoot(document.getElementById('root'));
 //       profile_pic: 'https://i.seadn.io/gcs/files/3085b3fc65f00b28699b43efb4434eec.png?auto=format&dpr=1&w=1000',
 //       cash: 1900,
 //       bank: 20000,
+//       loadout: [
+//         {
+//           id: 'WEAPON_PISTOL',
+//           img: 'https://i.imgur.com/n4SV2Sv.png',
+//           type: 'WEAPON',
+//           label: 'Pistol',
+//           amount: 80,
+//           weight: 10,
+//         },
+//         {
+//           id: 'WEAPON_COMBATPISTOL',
+//           img: 'https://i.imgur.com/BTAE4QQ.png',
+//           type: 'WEAPON',
+//           label: 'Combat Pistol',
+//           amount: 40,
+//           weight: 10,
+//         },
+//       ],
 //     },
 //   ],
 // });
