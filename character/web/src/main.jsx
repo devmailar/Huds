@@ -6,16 +6,16 @@ import './index.css';
 const root = createRoot(document.getElementById('root'));
 
 /**
- * @description - Just to test the UI without FiveM
+ * @description - Just to test the NUI without
  */
 // window.postMessage({
 //   visible: true,
 //   data: [
 //     {
-//       full_name: 'leosk',
+//       name: 'leosk',
 //       license: 'license:0673c17a25323f11be214fc75bdcae036ab5705f',
-//       profile_pic: 'https://avatars.githubusercontent.com/u/83369389?v=4',
-//       loadout: [],
+//       team: 'Coppers',
+//       avatar: 'https://yt3.googleusercontent.com/ytc/AIf8zZT-5HuLrT_B0Obp5TGnKVxU2JXrE4Z7iTWOEz2T=s176-c-k-c0x00ffffff-no-rj',
 //     },
 //   ],
 // });
@@ -24,7 +24,11 @@ const root = createRoot(document.getElementById('root'));
  * @description - This is the event listener that will be triggered by postMessage
  */
 window.addEventListener('message', (event) => {
-  const { visible, data } = event.data;
+  const { visible, data, source } = event.data;
+
+  if (source) {
+    return;
+  }
 
   if (visible) {
     root.render(

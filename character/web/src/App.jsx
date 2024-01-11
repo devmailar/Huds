@@ -1,73 +1,100 @@
-import { GiBank, GiCash, GiHeavyBullets, GiUsbKey } from 'react-icons/gi';
+import { GiUsbKey } from 'react-icons/gi';
 import './App.css';
 
-export default function ({ full_name, license, profile_pic, cash, bank, loadout }) {
+export default function ({ name, license, team, avatar }) {
   const formattedLicense = license.replace('license:', '').slice(0, 4) + '...' + license.slice(-4);
 
-  /**
-   * This function returns string, ex: if value is 1900 then we return $1,900,00
-   * @param {number} value
-   * @returns {string}
-   */
-  function handleFormatAmount(value) {
-    return Intl.NumberFormat('en', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(value);
-  }
-
   return (
-    <div className="flex flex-col gap-40">
-      <div className="animate__animated animate__fadeInDown flex justify-end items-center w-full">
-        <section id="Profile" className="flex gap-4 items-center mt-14 mr-10">
-          <div className="animate__animated animate__fadeInDown animate__delay-0.6s w-16 h-16 relative">
-            {profile_pic && (
-              <img
-                className="animate__animated animate__fadeInDown animate__delay-0.6s rounded-full absolute top-0 left-0 w-full h-full object-cover"
-                src={profile_pic}
-                alt="pfp"
-              />
-            )}
-          </div>
-          <div className="flex flex-col gap-y-1">
-            <div>
-              <h2 className="text-xl text-slate-50 font-bold lowercase">
-                {'@'}
-                {full_name}
-              </h2>
+    <div className="animate__animated animate__fadeInDown flex justify-center">
+      {team.toUpperCase() === 'COPPERS' ? (
+        <section
+          id="Coppers Profile"
+          className="flex flex-col gap-2 items-center m-8 py-6 px-8 bg-blue-400 bg-opacity-50 rounded-lg backdrop-blur-md"
+        >
+          <div className="flex gap-4 items-center">
+            <div className="animate__animated animate__fadeInDown animate__delay-0.6s w-16 h-16 relative">
+              {avatar && (
+                <>
+                  <img className="absolute z-10 bottom-7 w-12 ml-2" src="https://i.imgur.com/iAFLbco.png" alt="police-hat" />
+                  <img
+                    className="animate__animated animate__fadeInDown animate__delay-0.6s rounded-full absolute top-0 left-0 w-full h-full object-cover"
+                    src={avatar}
+                    alt="avatar"
+                  />
+                </>
+              )}
             </div>
-            <div className="animate__animated animate__fadeInDown animate__delay-0.2s flex gap-1 items-center bg-gray-500 opacity-60 px-2 py-1 rounded-md">
-              <GiUsbKey className="text-[0.8em]" color="#ffffff" />
-              <code className="text-[0.8em] text-white">{formattedLicense}</code>
-            </div>
-            {/* <div className="animate__animated animate__fadeInDown animate__delay-0.4s flex gap-1 items-center justify-between bg-[#4191b3] border-[#397f9d] opacity-60 px-2 py-0.5 rounded-md ">
-              <span>LVL 1</span>
-              <div className="w-20 p-2 bg-blue-400"></div>
-              <span>LVL 2</span>
-            </div> */}
-            {/* <div className="animate__animated animate__fadeInDown animate__delay-0.3s flex gap-1 items-center bg-[#3fa65b] border-[#358b4c] opacity-60 px-2 py-0.5 rounded-md ">
-              <GiCash className="text-[0.8em]" color="#ffffff" />
-              <code className="text-[0.8em] text-white">{handleFormatAmount(cash)}</code>
-            </div> */}
-          </div>
-        </section>
-      </div>
 
-      {/* <div className="animate__animated animate__fadeInDown flex justify-end items-center w-full">
-        <section id="Loadout" className="flex flex-col gap-4 justify-center mr-10">
-          {loadout.map((loadoutItem) => (
-            <div key={loadoutItem.id} className="flex flex-col gap-1 justify-center p-1">
+            <div className="flex flex-col gap-y-1">
               <div>
-                <h2 className="font-semibold text-[0.8em] text-white uppercase border-b-[1px] border-slate-200 ">{loadoutItem.label}</h2>
+                <h2 className="text-xl text-white font-bold">
+                  {'@'}
+                  {name}
+                </h2>
               </div>
-              <div className="flex gap-1 items-center">
-                <GiHeavyBullets className="text-white" />
-                <code className="font-normal text-[0.8em] text-white">{loadoutItem.amount}</code>
+
+              <div className="animate__animated animate__fadeInDown animate__delay-0.2s flex gap-1 items-center bg-blue-300 p-0.5 rounded-md">
+                <GiUsbKey className="text-[0.8em]" color="#ffffff" />
+                <code className="text-[0.8em] text-white">{formattedLicense}</code>
               </div>
             </div>
-          ))}
+          </div>
+
+          <div className="animate__animated animate__fadeInDown animate__delay-0.4s">
+            <div className="flex justify-between">
+              <span className="font-black text-[0.75em] text-white">LVL 1</span>
+              <span className="font-black text-[0.75em] text-white">LVL 2</span>
+            </div>
+            <div className="bg-blue-200 rounded-full w-28">
+              <div className="bg-blue-300 w-1/3 p-1 rounded-full" />
+            </div>
+          </div>
         </section>
-      </div> */}
+      ) : (
+        <section
+          id="Robbers Profile"
+          className="flex flex-col gap-2 items-center m-8 py-6 px-8 bg-red-400 bg-opacity-50 rounded-lg  backdrop-blur-md"
+        >
+          <div className="flex gap-4 items-center">
+            <div className="animate__animated animate__fadeInDown animate__delay-0.6s w-16 h-16 relative">
+              {avatar && (
+                <>
+                  <img className="absolute z-10 bottom-4 w-12 ml-2" src="https://i.imgur.com/HCTEicP.png" alt="police-hat" />
+                  <img
+                    className="animate__animated animate__fadeInDown animate__delay-0.6s rounded-full absolute top-0 left-0 w-full h-full object-cover"
+                    src={avatar}
+                    alt="avatar"
+                  />
+                </>
+              )}
+            </div>
+
+            <div className="flex flex-col gap-y-1">
+              <div>
+                <h2 className="text-xl text-white font-bold">
+                  {'@'}
+                  {name}
+                </h2>
+              </div>
+
+              <div className="animate__animated animate__fadeInDown animate__delay-0.2s flex gap-1 items-center bg-red-300 p-0.5 rounded-md">
+                <GiUsbKey className="text-[0.8em]" color="#ffffff" />
+                <code className="text-[0.8em] text-white">{formattedLicense}</code>
+              </div>
+            </div>
+          </div>
+
+          <div className="animate__animated animate__fadeInDown animate__delay-0.4s">
+            <div className="flex justify-between">
+              <span className="font-black text-[0.75em] text-white">LVL 1</span>
+              <span className="font-black text-[0.75em] text-white">LVL 2</span>
+            </div>
+            <div className="bg-red-200 rounded-full w-20">
+              <div className="bg-red-300 w-1/3 p-1 rounded-full" />
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }
