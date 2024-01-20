@@ -12,10 +12,8 @@ const root = createRoot(document.getElementById('root'));
 //   visible: true,
 //   data: [
 //     {
-//       name: 'leosk',
-//       license: 'license:0673c17a25323f11be214fc75bdcae036ab5705f',
-//       team: 'Coppers',
-//       avatar: 'https://yt3.googleusercontent.com/ytc/AIf8zZT-5HuLrT_B0Obp5TGnKVxU2JXrE4Z7iTWOEz2T=s176-c-k-c0x00ffffff-no-rj',
+//       team: 'Robbers',
+//       avatar: 'https://img.freepik.com/premium-photo/pubg-character-pfp-4_844188-29.jpg',
 //     },
 //   ],
 // });

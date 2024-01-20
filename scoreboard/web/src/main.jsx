@@ -1,30 +1,32 @@
+import axios from 'axios';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 
 const root = createRoot(document.getElementById('root'));
 
+export const Axios = axios.create({
+  baseURL: 'http://localhost:3000/api/v1/',
+  timeout: 1000,
+});
+
 // window.postMessage({
 //   visible: true,
-//   data: [
-//     {
-//       id: 2,
-//       name: 'Mailar',
-//       job: 'Engineer',
-//     },
-//     {
-//       id: 3,
-//       name: 'John',
-//       job: 'Designer',
-//     },
-//   ],
+//   heist_id: 3,
 // });
 
-window.addEventListener('message', (event) => {
-  const { visible, data } = event.data;
+window.addEventListener('message', async (event) => {
+  const { visible, heist_id, source } = event.data;
+
+  if (source) {
+    return;
+  }
 
   if (visible) {
-    root.render(<App data={data} />);
-  } else {
-    root.render();
+    const { data } = await Axios.get(`heists/${heist_id}`);
+    root.render(<App {...data} />);
+
+    return;
   }
+
+  root.render();
 });

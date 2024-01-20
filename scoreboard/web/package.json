@@ -10,17 +10,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.6.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
-    "@vitejs/plugin-react-swc": "^3.3.2",
-    "autoprefixer": "^10.4.14",
+    "@types/react": "^18.2.46",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "autoprefixer": "^10.4.16",
     "kutty": "^0.6.0",
-    "postcss": "^8.4.27",
-    "tailwindcss": "^3.3.3",
-    "vite": "^4.4.5"
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1",
+    "vite": "^4.5.1"
   }
 }
