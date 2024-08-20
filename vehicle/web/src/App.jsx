@@ -23,12 +23,7 @@ export default function App({ data }) {
           <BsFillArrowRightSquareFill className={turningDirection === 2 ? 'turning' : ''} />
         </div>
       </div>
-      {playAudio && (
-        <ReactAudioPlayer
-          src="../audio.ogg"
-          autoPlay
-        />
-      )}
+      {playAudio && <ReactAudioPlayer src="../audio.ogg" autoPlay />}
     </div>
   );
 }
